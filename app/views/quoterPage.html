@@ -1,0 +1,12 @@
+<div>
+    <h1>{{quoter}}</h1>
+    <div>
+        Click me: <input type="checkbox" ng-model="checked" ng-init="checked=false" />
+    </div>
+    <div ng-if="checked">
+        <button ng-Click="addThing()">Click me</button>
+    </div>
+    <div ng-repeat="listItem in data.dumbList">
+        <span>{{listItem}}</span>
+    </div>
+</div>
