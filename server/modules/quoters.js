@@ -2,6 +2,7 @@ var mysql = require('mysql');
 
 var RoomModel = require('../models/quotersModel');
 
+//TODO Craig, please put correct MySQL creds here
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
