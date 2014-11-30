@@ -1,14 +1,23 @@
 var mysql = require('mysql');
 
-var RoomModel = require('../models/quotersModel');
+var QuoterModel = require('../models/quotersModel');
 
-//TODO Craig, please put correct MySQL creds here
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "passwordhere",
-  database: "quotedb"
-});
+var connection;
+/*fs = require('fs')
+fs.readFile('/var/www/html/quote/server/password.txt', 'utf8', function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  console.log(data);
+
+
+});*/
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "Int3rmission1",
+    database: "Quote"
+  });
 
 returnResults = function(query, inserts, func) {
   if(inserts) {
@@ -34,8 +43,9 @@ connection.connect();
 //reconnects to server every 24 hours
 setInterval(function() {connect();}, 86400000);
 
-exports.getQuoter = function(req, res) {
-	QuoterModel.QuoterByName(req.params.quotername, function(data) {
+exports.getQuotes = function(req, res) {
+	console.log(req.params);
+	QuoterModel.QuotesByQuoterName(req.params.quoter_name, function(data) {
         	res.send(data);
 	});
 }
@@ -47,13 +57,13 @@ exports.putQuoter = function(req, res) {
 }
 
 exports.getQuotersList = function(req, res) {
-	/*QuoterModel.QuotersList(function(data, req) {
+	QuoterModel.QuotersList(function(data, req) {
         	res.send(data);
-    	});*/
+    	});
 	//Test Data :)
-	res.send([
+	/*res.send([
 		{name: "Danny", quotes: ["You so smart!", "The Emperor is here"]},
 		{name: "Mark Twain", quotes: ["Blah blah"]},
 		{name: "Freddy Mercury", quotes: ["Blah blah blah"]}
-	]);	
+	]);	*/
 }

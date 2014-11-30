@@ -12,7 +12,7 @@ start = function(PORT) {
 	app.use(express.static('/var/www/html/quote/app'));
 	// Quote stuff
 	app.get('/api/quoters', quoterModule.getQuotersList);
-	app.get('/api/quoter/:quoter', quoterModule.getQuoter);
+	app.get('/api/quoter/:quoter_name', quoterModule.getQuotes);
 	app.put('/api/quoter/:quoter', quoterModule.putQuoter);
 
 	console.log(PORT);

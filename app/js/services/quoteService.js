@@ -5,16 +5,16 @@
 app.factory('Quotes', ['$resource', 
 	function ($resource) {
 		return {
-			RoomList: $resource('api/quotersList',
+			QuotersList: $resource('api/quoters',
 				{},
 				{ get: { method: 'GET', isArray : true }}),
-			Room: $resource('api/quoter/:quoter', 
+			Quotes: $resource('api/quoter/:quoter', 
 				{ quoter: '@quoter'}, 
 				{ get: { method: 'GET', isArray : true }}),
-			RoomPut: $resource('api/quoter/:quoter',
+			QuotesPut: $resource('api/quoter/:quoter',
 				{ quoter: '@quoter'},
 				{ update: { method: 'PUT' }}),
-			RoomPost: $resource('api/quoter/:quoter',
+			QuotesPost: $resource('api/quoter/:quoter',
 				{ quoter: '@quoter'},
 				{ save: { method: 'POST' }})
 		}

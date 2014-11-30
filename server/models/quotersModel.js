@@ -12,18 +12,18 @@ var escapeSpecialChars = function(text) {
 QuotersList = function(func) {
     console.log('Looking for QuotersList');
 
-    var query = "Select name FROM quoters";
+    var query = "Select first_name, last_name FROM quoters";
 
     returnResults(query, undefined, function(results) {
 	func(results);
     });
 };
 
-QuoterByName = function(id, func) {
+QuotesByQuoterName = function(last_name, func) {
     console.log('Looking for QuoteList');
 
-    var query = "Select * FROM quotes WHERE name = ?";
-    var inserts = [id];
+    var query = "SELECT * FROM quotes LEFT JOIN quoters ON quotes.quoter_id = quoters.id LEFT JOIN quotes_tags on quotes.id = quotes_tags.quote_id LEFT JOIN tags on quotes_tags.tag_id = tags.id WHERE quoters.last_name = ?";
+    var inserts = [last_name];
     returnResults(query, inserts, function(results) {
 	func(results);
     });
@@ -43,5 +43,5 @@ UpdateQuoterByName = function(id, data, func) {
 };
 
 exports.QuotersList = QuotersList;
-exports.QuoterByName = QuoterByName;
+exports.QuotesByQuoterName = QuotesByQuoterName;
 exports.UpdateQuoterByName = UpdateQuoterByName;
